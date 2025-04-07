@@ -2,11 +2,11 @@ const mysql = require("mysql2");
 const dotenv = require("dotenv");
 dotenv.config();
 const db = mysql.createPool({
-  host: "192.250.229.116",
-  user: "ametrajx_userForums",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: "ametrajx_forums",
-  
+  database: process.env.DB_NAME,
+  connectionLimit: 10,
 });
 
 module.exports = db.promise();

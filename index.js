@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const port = 2017;
+const dotenv = require("dotenv").config();
+const port = process.env.PORT;
 const { StatusCodes } = require("http-status-codes");
 
 // Database Connection
@@ -20,14 +21,13 @@ const answerRoute = require("./routes/answerRoute");
 const questionRoute = require("./routes/questionRoute");
 // user route middleware
 app.use("/api/users", userRoutes);
-// Question route middleware 
+// Question route middleware
 app.use("/api/question", questionRoute);
 // Answers Route middleware
 app.use("/api/answers", answerRoute);
 app.get("/", (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "It is working" });
 });
-
 
 async function start() {
   try {
